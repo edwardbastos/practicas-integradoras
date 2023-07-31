@@ -1,7 +1,8 @@
-import express from "express";
-import ProductManager from "./src/ProductManager";
+const ProductManager = require("./productManager.js");
 
+const express = require("express");
 const app = express();
+
 const PORT = 8080;
 
 app.use(express.json());
