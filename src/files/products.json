@@ -6,6 +6,7 @@
       "thumbnail": "../assets/img/photocopier1.jpg",
       "code": "M3655idn",
       "stock": 7,
+      "category":"Fotocopiadora",
       "id": 1
     },
     {
@@ -15,6 +16,7 @@
       "thumbnail": "../assets/img/photocopier2.jpg",
       "code": "XM3150",
       "stock": 5,
+      "category":"Fotocopiadora",
       "id": 2
     },
     {
@@ -23,6 +25,7 @@
       "price": 4415,
       "code": "L5590",
       "stock": 33,
+      "category":"Fotocopiadora",
       "id": 3
     },
     {
@@ -32,6 +35,7 @@
       "thumbnail": "../assets/img/photocopier3.jpg",
       "code": "M521",
       "stock": 21,
+      "category":"Fotocopiadora",
       "id": 4
     },
     {
@@ -41,6 +45,7 @@
       "thumbnail": "../assets/img/printer1.jpg",
       "code": "L3210",
       "stock": 17,
+      "category":"Impresora",
       "id": 5
     },
     {
@@ -50,6 +55,7 @@
       "thumbnail": "../assets/img/printer2.jpg",
       "code": "DeskJet",
       "stock": 9,
+      "category":"Impresora",
       "id": 6
     },
     {
@@ -59,6 +65,7 @@
       "thumbnail": "../assets/img/printer3.jpg",
       "code": "G610",
       "stock": 3,
+      "category":"Impresora",
       "id": 7
     },
     {
@@ -68,6 +75,7 @@
       "thumbnail": "../assets/img/printer4.jpg",
       "code": "panda",
       "stock": 11,
+      "category":"Impresora",
       "id": 8
     },
     {
@@ -77,6 +85,7 @@
       "thumbnail": "../assets/img/photocopier4.jpg",
       "code": "WF-6090",
       "stock": 2,
+      "category":"Impresora",
       "id": 9
     },
     {
@@ -86,6 +95,7 @@
       "thumbnail": "../assets/img/printer5.jpg",
       "code": "3YW73A",
       "stock": 24,
+      "category":"Impresora",
       "id": 10
     }
   ]
