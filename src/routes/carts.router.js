@@ -2,7 +2,7 @@
 import { Router } from "express";
 
 // Importando la clase CartManager desde un módulo personalizado
-import CartManager from "../managers/cartsManager.js";
+import CartManager from "../manager/cartsManager.js";
 
 // Importando la variable '__dirname' desde un módulo personalizado
 import { __dirname } from "../utils.js";

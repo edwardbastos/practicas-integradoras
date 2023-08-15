@@ -2,7 +2,7 @@
 import { Router } from "express";
 
 // Importando la clase ProductManager desde un módulo personalizado
-import ProductManager from "../managers/ProductsManager.js";
+import ProductManager from "../manager/ProductsManager.js";
 
 // Importando la variable '__dirname' desde un módulo personalizado
 import { __dirname } from "../utils.js";
