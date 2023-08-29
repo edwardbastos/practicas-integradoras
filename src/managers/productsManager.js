@@ -4,6 +4,7 @@ export default class ProductManager {
   constructor(path) {
     this.path = path;
   }
+  //agregar producto
 
   addProduct = async (product) => {
     try {
