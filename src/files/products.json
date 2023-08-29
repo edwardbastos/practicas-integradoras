@@ -88,5 +88,15 @@
 		"stock": 24,
 		"category": "Impresora",
 		"id": 9
+	},
+	{
+		"title": "Impresora de Prueba",
+		"description": "Impresora",
+		"stock": "22",
+		"thumbnail": "https://cdn.compudemano.com/wp-content/uploads/2023/03/epson-impresora-workforce-pro-wf-6090-1.png.webp",
+		"category": "Pruebas",
+		"price": "22",
+		"code": "212",
+		"id": 10
 	}
 ]

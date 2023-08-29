@@ -7,27 +7,27 @@ socketClient.on("sendProducts", (listProducts) => {
 function updateProductList(listProducts) {
   const div = document.getElementById("container");
 
-  let productos = listProducts;
-  let products = "";
-  div.innerHTML = "";
-  productos.forEach((product) => {
+  let products = ""; // Movido fuera del bucle
+
+  listProducts.forEach((product) => {
     products += `<div class="card" id="card${product.id}">
                     <div class="card-body">
-                      <img src="${product.thumbnail}" width="150"class="card-img-top" alt="${product.title}"/>
+                      <img src="${product.thumbnail}" width="150" class="card-img-top" alt="${product.title}"/>
                       <h5 class="card-title">${product.title}</h5>
                       <div class="card-info">
                         <p class="card-text">${product.description}</p>
-                        <p class="card-text">Categoría:${product.category}</p>
-                        <p class="card-text">Código:${product.code}</p>
-                        <p class="card-text">Stock:${product.stock}</p>
+                        <p class="card-text">Categoría: ${product.category}</p>
+                        <p class="card-text">Código: ${product.code}</p>
+                        <p class="card-text">Stock: ${product.stock}</p>
                         <p class="card-text">Precio: $${product.price}</p>
-                      </div >
-                    </div >
-                 </div >`;
-
-    div.innerHTML = products;
+                      </div>
+                    </div>
+                 </div>`;
   });
+
+  div.innerHTML = products; // Asignar el contenido una vez construido
 }
+
 const form = document.getElementById("formProducts");
 form.addEventListener("submit", (evt) => {
   evt.preventDefault();
