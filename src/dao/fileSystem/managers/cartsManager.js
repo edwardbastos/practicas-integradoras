@@ -110,18 +110,4 @@ export default class CartManager {
       console.error(error);
     }
   };
-  deleteCart = async (id) => {
-    try {
-      const carts = await this.getCarts();
-      const index = carts.findIndex((cart) => cart.id === id);
-      if (index === -1) {
-        return `Can't find cart with id: `;
-      }
-      carts.splice(index, 1);
-      await fs.promises.writeFile(this.path, JSON.stringify(carts, null, "\t"));
-      return carts;
-    } catch (error) {
-      console.error(error);
-    }
-  };
 }

@@ -1,8 +1,8 @@
 import { Router } from "express";
-import ProductManager from "../managers/productsManager.js";
+import ProductManager from "../dao/mongo/managers/productManager.js";
 import { __dirname } from "../utils.js";
 
-const manager = new ProductManager(__dirname + "/files/products.json");
+const manager = new ProductManager();
 const router = Router();
 
 router.get("/", async (req, res) => {

@@ -1,21 +1,9 @@
 import { Router } from "express";
-import ProductManager from "../dao/mongo/managers/productManager.js";
-import { __dirname } from "../utils.js";
-import UserManager from '../dao/mongo/managers/userManager.js';
+import UserManager from '../dao/Mongo/managers/userManager.js';
 
-const pmanager = new ProductManager();
-const usersService = new UserManager();
 const router = Router();
 
-router.get("/", async (req, res) => {
-  const listaProductos = await pmanager.getProducts();
-  res.render("home", { listaProductos });
-});
-
-router.get("/realTimeProducts", async (req, res) => {
-  const listaProductos = await pmanager.getProducts();
-  res.render("realTimeProducts", { listaProductos });
-});
+const usersService = new UserManager();
 
 router.post('/register',async(req,res)=>{
     const {
