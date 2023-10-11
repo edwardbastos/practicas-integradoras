@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const collection = "carts";
+
 const productSubSchema = new mongoose.Schema(
   {
     product: {
@@ -29,6 +30,6 @@ schema.pre(["find", "findOne"], function () {
   this.populate("products.product");
 });
 
-const cartsModel = mongoose.model(collection, schema);
+const cartModel = mongoose.model(collection, schema);
 
-export default cartsModel;
+export default cartModel;

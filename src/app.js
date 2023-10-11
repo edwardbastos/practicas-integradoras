@@ -1,38 +1,53 @@
 import express from "express";
 import { Server } from "socket.io";
+import mongoose from "mongoose";
 import handlebars from "express-handlebars";
-import productsRouter from "./routes/products.router.js";
-import cartsRouter from "./routes/carts.router.js";
-import viewsRouter from "./routes/views.router.js";
-import { __dirname } from "./utils.js";
-import "./dao/mongo/dbConfig.js";
-import ProductManager from "./dao/mongo/managers/productManager.js";
+import cookieParser from "cookie-parser";
 
+import productsRouter from "./routes/ProductsRouter.js";
+import cartsRouter from "./routes/CartRouter.js";
+import viewsRouter from "./routes/ViewsRouter.js";
+import SessionsRouter from "./routes/SessionsRouter.js";
+
+import __dirname from "./utils.js";
+import config from "./config/config.js";
+import initializePassportStrategies from "./config/passport.config.js";
+
+import ProductManager from "./dao/mongo/managers/productManager.js";
+import ChatManager from "./dao/mongo/managers/chatManager.js";
 
 const app = express();
-app.use(express.static('public'));
 
 const PORT = process.env.PORT || 8080;
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(`${__dirname}/public`));
+const connection = mongoose.connect(config.mongo.URL);
+console.log("Base de datos conectada");
 
 app.engine("handlebars", handlebars.engine());
 app.set("view engine", "handlebars");
 app.set("views", `${__dirname}/views`);
 
+app.use(express.static(`${__dirname}/public`));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+initializePassportStrategies();
+
 //rutas
+app.use("/", viewsRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
-app.use("/", viewsRouter);
+app.use("/api/sessions", SessionsRouter);
 
 const httpServer = app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
-// const prodManager = new ProductManager(__dirname + "/files/products.json");
+
 const socketServer = new Server(httpServer);
+
 const prodManager = new ProductManager();
+const chatManager = new ChatManager();
 
 socketServer.on("connection", async (socket) => {
   console.log("Cliente conectado con id: ", socket.id);
@@ -60,5 +75,13 @@ socketServer.on("connection", async (socket) => {
   });
   socket.on("disconnect", () => {
     console.log(`Usuario con ID : ${socket.id} esta desconectado `);
+  });
+
+  socket.on("message", async (info) => {
+    // Guardar el mensaje utilizando el MessagesManager
+    console.log(info);
+    await chatManager.createMessage(info);
+    // Emitir el mensaje a todos los clientes conectados
+    socketServer.emit("chat", await chatManager.getMessages());
   });
 });

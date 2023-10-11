@@ -1,18 +1,19 @@
-import userModel from '../models/users.js';
+import userModel from "../models/user.model.js";
 
-//Cada manager es consciente de qué PERSISTENCIA está utilizando.
 export default class UserManager {
-
-    get = () =>{
-        //Va a traer a todos los users desde la base
-        return userModel.find().lean();
-    }
-
-    getBy = (param) =>{
-        return userModel.findOne(param).lean();
-    }
-
-    create = (user) =>{
-        return userModel.create(user);
-    }
+  getUsers = (params) => {
+    return userModel.find(params).lean();
+  };
+  getUserBy = (params) => {
+    return userModel.findOne(params).lean();
+  };
+  createUser = (user) => {
+    return userModel.create(user);
+  };
+  updateUser = (id, user) => {
+    return userModel.updateOne({ _id: id }, { $set: user });
+  };
+  deleteUser = (id) => {
+    return userModel.deleteOne({ _id: id });
+  };
 }
