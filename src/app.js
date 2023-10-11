@@ -14,7 +14,7 @@ import config from "./config/config.js";
 import initializePassportStrategies from "./config/passport.config.js";
 
 import ProductManager from "./dao/mongo/managers/productManager.js";
-import ChatManager from "./dao/mongo/managers/chatManager.js";
+
 
 const app = express();
 
@@ -47,7 +47,6 @@ const httpServer = app.listen(PORT, () => {
 const socketServer = new Server(httpServer);
 
 const prodManager = new ProductManager();
-const chatManager = new ChatManager();
 
 socketServer.on("connection", async (socket) => {
   console.log("Cliente conectado con id: ", socket.id);
@@ -77,11 +76,4 @@ socketServer.on("connection", async (socket) => {
     console.log(`Usuario con ID : ${socket.id} esta desconectado `);
   });
 
-  socket.on("message", async (info) => {
-    // Guardar el mensaje utilizando el MessagesManager
-    console.log(info);
-    await chatManager.createMessage(info);
-    // Emitir el mensaje a todos los clientes conectados
-    socketServer.emit("chat", await chatManager.getMessages());
-  });
 });
